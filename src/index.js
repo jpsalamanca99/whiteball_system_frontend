@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RegisterPerson from './views/RegisterPerson'
+import DashboardTournaments from './views/DashboardTournaments'
 
 
 const divRoot = document.querySelector('#app');
 
-ReactDOM.render(<RegisterPerson />, divRoot);
+ReactDOM.render(<DashboardTournaments />, divRoot);

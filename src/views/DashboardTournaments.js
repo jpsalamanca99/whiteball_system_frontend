@@ -7,7 +7,6 @@ import RegisterTournament from './RegisterTournament';
 
 const DashboardTournaments = () => {
 
-    const [registerModal, setRegisterModal] = useState(false)
     const headers = [{ label: 'Fecha' }, { label: 'Inscritos' }, { label: 'Accion' }]
     const tempRows = [
         [{ value: '10/10/2021' }, { value: '15' }, { value: Button({ text: 'Detalles' }) }],
@@ -16,9 +15,9 @@ const DashboardTournaments = () => {
         [{ value: '10/10/2021' }, { value: '15' }, { value: Button({ text: 'Detalles' }) }],
         [{ value: '10/10/2021' }, { value: '15' }, { value: Button({ text: 'Detalles' }) }],
     ]
+    const [registerModal, setRegisterModal] = useState(false)
 
     const modalHandler = () => {
-        console.log(registerModal);
         setRegisterModal(!registerModal);
     }
 
@@ -27,7 +26,7 @@ const DashboardTournaments = () => {
             <Table headers={headers} rows={tempRows} />
             <Button text='Crear nuevo torneo' handler={modalHandler} />
             <Modal modalOpen={registerModal}>
-                <RegisterTournament />
+                <RegisterTournament onSubmit={modalHandler} />
             </Modal>
         </>
     )

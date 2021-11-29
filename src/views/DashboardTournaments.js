@@ -1,21 +1,27 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react';
+
 import Table from '../components/Table';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import RegisterTournament from './RegisterTournament';
 
+import { getTournaments } from '../services/tournaments';
+
 const DashboardTournaments = () => {
 
-    const headers = [{ label: 'Fecha' }, { label: 'Inscritos' }, { label: 'Accion' }]
-    const tempRows = [
-        [{ value: '10/10/2021' }, { value: '15' }, { value: Button({ text: 'Detalles' }) }],
-        [{ value: '10/10/2021' }, { value: '15' }, { value: Button({ text: 'Detalles' }) }],
-        [{ value: '10/10/2021' }, { value: '15' }, { value: Button({ text: 'Detalles' }) }],
-        [{ value: '10/10/2021' }, { value: '15' }, { value: Button({ text: 'Detalles' }) }],
-        [{ value: '10/10/2021' }, { value: '15' }, { value: Button({ text: 'Detalles' }) }],
-    ]
-    const [registerModal, setRegisterModal] = useState(false)
+    const [tournamentList, setTournamentList] = useState([]);
+    const [registerModal, setRegisterModal] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await getTournaments();
+            setTournamentList(res.data);
+        }
+
+        fetchData();
+    }, []);
+
+    const headers = [{ label: 'Fecha' }, { label: 'Inscritos' }, { label: 'Accion' }];
 
     const modalHandler = () => {
         setRegisterModal(!registerModal);
@@ -23,18 +29,13 @@ const DashboardTournaments = () => {
 
     return (
         <>
-            <Table headers={headers} rows={tempRows} />
+            <Table headers={headers} rows={tournamentList} />
             <Button text='Crear nuevo torneo' handler={modalHandler} />
             <Modal modalOpen={registerModal}>
-                <RegisterTournament onSubmit={modalHandler} />
+                <RegisterTournament closeModal={modalHandler} />
             </Modal>
         </>
     )
 }
 
-DashboardTournaments.propTypes = {
-
-}
-
 export default DashboardTournaments
-

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const Form = ({ handler, children }) => {
 
@@ -13,10 +12,6 @@ const Form = ({ handler, children }) => {
             {children}
         </form>
     )
-}
-
-Form.propTypes = {
-
 }
 
 export default Form

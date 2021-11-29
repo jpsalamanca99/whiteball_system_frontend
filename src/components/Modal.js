@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 const Modal = ({ modalOpen, className, children, noCenterTop }) => {
@@ -14,10 +13,6 @@ const Modal = ({ modalOpen, className, children, noCenterTop }) => {
             )}
         </>
     )
-}
-
-Modal.propTypes = {
-
 }
 
 export default Modal

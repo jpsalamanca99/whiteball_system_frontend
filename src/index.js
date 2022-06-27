@@ -1,9 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-//import DashboardTournaments from './views/DashboardTournaments';
-import TournamentDetails from './views/TournamentDetails';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'
+
+import { AppRouter } from './router/AppRouter';
 
 
-const divRoot = document.querySelector('#app');
-
-ReactDOM.render(<TournamentDetails tournametId={1} />, divRoot);
+ReactDOM.createRoot(document.getElementById('app')).render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <AppRouter />
+        </BrowserRouter>
+    </React.StrictMode>
+)
